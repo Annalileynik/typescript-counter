@@ -29,11 +29,26 @@ function App() {
             : counter)
         setCounters(newCounters)
     }
+    const minus = (id: string, buttonValueMinus: number) => {
+        const newCounters = counters.map(counter => counter.id === id
+            ? {...counter,
+                value: counter.value - buttonValueMinus
+            }
+            : counter)
+        setCounters(newCounters)
+    }
+    const reset = (id: string) => {
+        const newCounters = counters.filter(counter => counter.id !== id)
+        setCounters(newCounters)
+    }
     return (
         <div className="App">
+
             {counters.map(counter =>
                 <Counter key={counter.id} counter={counter}
                          plus={plus}
+                         minus={minus}
+                         reset={reset}
                 />
             )}
         </div>
